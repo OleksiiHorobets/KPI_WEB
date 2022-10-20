@@ -111,10 +111,10 @@ table {
   text-align: center;
 }
 table tr td:empty {
-  width: 100px;
+  width: 4%;
 }
 .menu {
-  width: 32%;
+  width: 22%;
   height: 100%;
   text-align: center;
   padding: 30px;
@@ -151,14 +151,14 @@ a {
 }
 
 .description {
-  width: 32%;
+  width: 22%;
   height: 100%;
   background-color: #fbeec1;
   padding: 20px;
   vertical-align: top;
 }
 .table__td {
-  width: 32%;
+  width: 48%;
 }
 
 .image_block {
@@ -166,18 +166,25 @@ a {
   background: burlywood;
 }
 .image_block img {
+  display: block;
+  margin: auto;
   max-width: 98%;
   padding: 3%;
 }
+.down__row {
+  width: 100%;
+}
 
 .box5 {
-  width: 47%;
+  width: 46%;
+  /* min-width: 30%; */
   height: 100%;
   background-color: whitesmoke;
   vertical-align: top;
 }
 .box6 {
-  width: 47%;
+  width: 46%;
+  /* min-width: 30%; */
   height: 100%;
   background-color: #fbeec1;
   vertical-align: top;

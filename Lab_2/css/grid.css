@@ -79,7 +79,7 @@ h6 {
 
   display: grid;
 
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 2fr;
   column-gap: 40px;
 
   grid-template-areas:
@@ -168,16 +168,24 @@ a {
     "box5 box6";
 }
 .image_block {
+  width: 100%;
   grid-area: image_block;
   background: burlywood;
+  /* 
+  display: flex;
+  justify-content: center; */
 }
 .image_block img {
+  display: block;
+  margin: auto;
+
   max-width: 98%;
   padding: 3%;
 }
 
 .box5 {
   grid-area: box5;
+  /* max-width: 95%; */
   background-color: whitesmoke;
 }
 .box6 {
