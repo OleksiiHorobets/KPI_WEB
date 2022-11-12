@@ -97,7 +97,7 @@ body {
   flex-direction: column;
 }
 .content {
-  background-image: url(/img/background.jpg);
+  background-image: url(./img/background.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
