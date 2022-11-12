@@ -75,7 +75,7 @@ h6 {
 /*--------------------*/
 @font-face {
   font-family: myFont;
-  src: url(/fonts/News\ Gothic\ Extra\ Condensed\ Regular.otf);
+  src: url(https://github.com/alex-ztdev/KPI_WEB/blob/main/Lab_4/fonts/RobotoCondensed-Regular.ttf?raw=true);
 }
 
 body {
@@ -149,7 +149,6 @@ body {
 .what__title {
   margin: auto;
   font-size: 85px;
-  font-weight: 700;
   color: #fff;
   margin-top: 30px;
 }
