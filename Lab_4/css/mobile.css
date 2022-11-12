@@ -75,7 +75,7 @@ h6 {
 /*--------------------*/
 @font-face {
   font-family: myFont;
-  src: url(/fonts/News\ Gothic\ Extra\ Condensed\ Regular.otf);
+  src: url(../fonts/RobotoCondensed-Regular.ttf);
 }
 
 body {
