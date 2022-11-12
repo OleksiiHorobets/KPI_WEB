@@ -75,7 +75,7 @@ h6 {
 /*--------------------*/
 @font-face {
   font-family: myFont;
-  src: url(../fonts/RobotoCondensed-Regular.ttf);
+  src: url(/fonts/RobotoCondensed-Regular.ttf);
 }
 
 body {
@@ -158,7 +158,6 @@ body {
 .what__title {
   margin: auto;
   font-size: 85px;
-  font-weight: 700;
   color: #fff;
   margin-top: 30px;
 }
