@@ -7,3 +7,5 @@
 # LAB3 [ email](https://alex-ztdev.github.io/KPI_WEB/Lab_3/mail.html) / [mobile](https://alex-ztdev.github.io/KPI_WEB/Lab_3/mail.html)
 
 # [LAB4](https://alex-ztdev.github.io/KPI_WEB/Lab_4/index.html)
+
+# [LAB6](https://alex-ztdev.github.io/KPI_WEB/Lab_6/index.html)
