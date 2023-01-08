@@ -17,8 +17,8 @@
   <body>
     <div class="content">
       <div class="header">
-        <div class="page__name">Acordion builder</div>
-        <div class="title">Acordion builder</div>
+        <div class="page__name">Data structures</div>
+        <div class="title">Stack</div>
       </div>
       <div class="middle">
         <div class="middle__row">
@@ -35,22 +35,29 @@
           <div class="creator vertical__item">
             <div class="creator__row">
               <div class="customize__element">
-                <h3>Customize elements</h3>
+                <h3
+                  style="margin-bottom: 10px; font-size: 26px; font-weight: 700"
+                >
+                  Customize elements
+                </h3>
                 <form id="input_form">
-                  <label for="font_size">Font size:</label>
+                  <label for="title_font_size">Title font size:</label>
+                  <input
+                    type="number"
+                    id="title_font_size"
+                    name="title_font_size"
+                    value="18"
+                    required
+                  />
+                  <br />
+                  <label for="font_size">Content font size:</label>
                   <input
                     type="number"
                     id="font_size"
                     name="font_size"
-                    min="20"
-                    max="50"
                     value="20"
                     required
                   />
-
-                  <!-- <label for="font_weight">Font style: </label>
-                  <input type="checkbox" id="italic_text" name="font_weight" value="italic"> 
-                  <label for="italic_text">Italic</label>-->
                   <br />
                   <label for="text_color">Text color:</label>
                   <input
@@ -69,31 +76,6 @@
                     value="#659dbd"
                   />
 
-                  <!-- <br />
-                  <label>Text align:</label>
-                  <input
-                    type="radio"
-                    id="left_align"
-                    name="text_align"
-                    value="left"
-                  />
-                  <label for="left_align">Left</label>
-                  <input
-                    type="radio"
-                    id="center_align"
-                    name="text_align"
-                    value="center"
-                    checked="true"
-                  />
-  
-                  <label for="center_align">Center</label>
-                  <input
-                    type="radio"
-                    id="right_align"
-                    name="text_align"
-                    value="right"
-                  />
-                  <label for="right_align">Right</label>-->
                   <br />
                   <label for="appearance_animation"
                     >Appearance animation time(in ms):</label
@@ -102,7 +84,6 @@
                     type="number"
                     id="appearance_animation"
                     name="appearance_animation_time"
-                    min="1"
                     value="600"
                   />
                   <br />
@@ -113,18 +94,17 @@
                     type="number"
                     id="content_animation"
                     name="content_animation_time"
-                    min="1"
-                    value="2000"
+                    value="700"
                   />
                   <br />
                   <button id="save_btn">Save settings</button>
-                  <button id="reset_btn">Set defaults</button>
+                  <button id="reset_btn">Reset</button>
                 </form>
               </div>
               <div id="control__elements">
                 <div id="buttons">
-                  <button id="add__el__btn">Add element</button>
-                  <button id="remove__el__btn">Remove element</button>
+                  <button id="add__el__btn">Add new</button>
+                  <button id="remove__el__btn">Pop</button>
                 </div>
               </div>
             </div>

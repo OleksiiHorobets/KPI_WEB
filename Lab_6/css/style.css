@@ -127,18 +127,6 @@ body {
 
   flex: 1 1 auto;
 }
-@media (max-width: 1000px) {
-  .middle__row {
-    flex-direction: column;
-  }
-  .page__name {
-    padding: 20px 50px;
-    max-width: 200px;
-  }
-  .title {
-    max-width: 200px;
-  }
-}
 
 .vertical__item {
   display: flex;
@@ -275,7 +263,7 @@ a {
   font-family: sans-serif;
   font-weight: bold;
   text-transform: capitalize;
-  font-size: 17px;
+  font-size: 18px;
   text-align: center;
 }
 .accordion__title button {
@@ -288,7 +276,10 @@ a {
   color: white;
   font-size: 20px;
 }
-.element .accordion__content {
+.element {
+  animation: animate 0.6s;
+}
+.accordion__content {
   padding: 10px 20px;
   animation: animate 0.7s;
 }
@@ -354,4 +345,53 @@ a {
   display: flex;
   flex-direction: row;
   /* justify-content: space-between; */
+}
+
+#save_btn,
+#reset_btn {
+  background: #fff;
+  margin-top: 10px;
+  padding: 16px 32px;
+  min-width: 140px;
+}
+#save_btn {
+  border: #4caf50 1px solid;
+}
+#reset_btn {
+  border: #f44336 1px solid;
+}
+
+#save_btn:active {
+  background: #61d344;
+  color: white;
+}
+#reset_btn:active {
+  background: #f44336;
+  color: white;
+}
+
+#input_form input {
+  padding: 0.3em;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 1000px) {
+  .middle__row {
+    flex-direction: column;
+    min-width: 100%;
+  }
+  .creator {
+    min-width: 100%;
+  }
+  .page__name {
+    padding: 20px 50px;
+    max-width: 200px;
+  }
+  .title {
+    max-width: 200px;
+  }
+  .vertical__item {
+    min-width: 100%;
+  }
 }

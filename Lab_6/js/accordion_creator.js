@@ -7,50 +7,32 @@ let save_button = document.querySelector("#save_btn");
 
 save_button.addEventListener("click", event=>{
     event.preventDefault();
+    elements = document.querySelectorAll(".element");
+    if(elements.length <=0) return;
     let font_size = form.querySelector("#font_size").value + "px";
-    // let font_style;
-    // if (form.querySelector("#italic_text").checked) font_style = "italic";
-    // else font_style = "normal";
+    let title_font_size = form.querySelector("#title_font_size").value + "px";
+
     let color = form.querySelector("#text_color").value;
     let element_color = form.querySelector("#element_color").value;
-    
-    // let pad_left = form.querySelector("#padding_left").value + "px";
-    // let pad_right = form.querySelector("#padding_right").value + "px";
-    // let text_align;
-    // if (form.querySelector("#left_align").checked) text_align = "left";
-    // else if (form.querySelector("#center_align").checked) text_align = "center";
-    // else text_align = "right";
 
     let title_anim = form.querySelector("#appearance_animation").value + "ms";
     let content_anim = form.querySelector("#content_animation").value + "ms";
+    document.querySelector('.accordion__content').style.fontSize = font_size;
 
-
+    document.querySelector('.accordion__title h3').style.fontSize = title_font_size;
+    
     elements.forEach(element => {
-        element.style.fontSize = font_size;
+        element.querySelector(".accordion__title h3").style.fontSize = title_font_size;
+        element.querySelector(".accordion__content").style.fontSize = font_size;
         element.style.color = color;
         element.style.background = element_color;
-        // element.style.setProperty('animation', anim_duration);
-        
         element.style.setProperty('animation', 'animate ' + title_anim);
 
         let children = document.querySelectorAll('.element .accordion__content');        
         children.forEach(ch=>{
             ch.style.setProperty('animation', 'animate ' + content_anim);
         });
-    } 
-    );
-    // for (let i of elements) {
-    //     i.style.fontSize = font_size;
-    //     i.style.fontStyle = font_style;
-    //     i.style.color = color;
-    //     i.style.setProperty("--first-glitch-color", fst_color);
-    //     i.style.setProperty("--second-glitch-color", snd_color);
-    //     i.style.setProperty("--padding-left", pad_left);
-    //     i.style.setProperty("--padding-right", pad_right);
-    //     i.style.textAlign = text_align;
-    //     i.style.setProperty("--open-animation-duration", open_anim_duration);
-    //     i.style.setProperty("--animation-duration", anim_duration);
-    // }
+    });
 });
 
 document.querySelector("#reset_btn").addEventListener('click', event=>{
@@ -122,3 +104,98 @@ remove_el_btn.addEventListener('click', (event)=>{
         elements[elements.length-1].remove();
     }
 })
+
+
+// console.log(JSON.parse(list[0]));
+
+window.addEventListener("beforeunload", ()=>{
+    localStorage.clear();
+    elements = document.querySelectorAll('.element');
+ 
+    if(elements.length > 0){
+        localStorage.setItem("title_font_size", window.getComputedStyle(document.querySelector('.accordion__title h3')).fontSize);
+        localStorage.setItem("content_font_size", window.getComputedStyle(document.querySelector('.accordion__content')).fontSize);
+        localStorage.setItem("text_color", window.getComputedStyle(document.querySelector('.element')).color);
+        localStorage.setItem("element_color", window.getComputedStyle(document.querySelector('.element')).backgroundColor);
+        
+        localStorage.setItem("appearance_anim", window.getComputedStyle(document.querySelector('.element')).animationDuration);
+        localStorage.setItem("content_anim", window.getComputedStyle(document.querySelector('.accordion__content')).animationDuration);
+        
+        let list = [];
+        
+        for(let ind = 0; ind < elements.length; ind++){
+            let title = elements[ind].querySelector(".accordion__title h3").innerText;
+            let content = elements[ind].querySelector(".accordion__content").innerText;
+            let json = JSON.stringify({ind, title, content});
+            localStorage.setItem("element"+ind, json);
+        }
+    }
+   
+});
+
+
+function unloadElements(){
+    if(!localStorage.getItem("element"+0)){
+        document.querySelector("#accordion__container").innerHTML = '';
+    
+        document.querySelectorAll(".element").forEach(element =>controlAccordion(element));
+        save_button.click();
+        return;
+    }
+    
+    form.querySelector("#title_font_size").value = localStorage.getItem("title_font_size").slice(0, -2);
+    form.querySelector("#font_size").value = localStorage.getItem("content_font_size").slice(0, -2);
+    
+    form.querySelector("#text_color").value = rgbToHex(localStorage.getItem("text_color"));
+    form.querySelector("#element_color").value = rgbToHex(localStorage.getItem("element_color"));
+    
+    form.querySelector("#appearance_animation").value = parseFloat(localStorage.getItem("appearance_anim").slice(0,-1))*1000;
+    form.querySelector("#content_animation").value = parseFloat(localStorage.getItem("content_anim").slice(0,-1))*1000;
+
+    let index = 0;
+    let container =  document.querySelector("#accordion__container");
+    let el = localStorage.getItem("element"+index);
+    let add_html = ``;
+    while(el){
+        let parsed = JSON.parse(el);
+
+        add_html += ` 
+        <div class="element">
+            <div class="accordion__title">
+                <h3>
+                    ${parsed.title}
+                </h3>
+                <button><i class="fas fa-plus-circle"></i></button>
+            </div>
+            <div class="accordion__content hideText">
+                <p>
+                    ${parsed.content}
+                </p>
+            </div>
+        </div>`
+        
+        index++;
+        el = localStorage.getItem("element"+index);
+    }
+    container.innerHTML = add_html;
+    
+    document.querySelectorAll(".element").forEach(element =>controlAccordion(element));
+    save_button.click();
+
+} 
+
+
+function rgbToHex(rgb) {
+    matcher = rgb.match(/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i);
+    if(matcher) {
+        return '#' + componentToHex(parseInt(matcher[1])) +componentToHex(parseInt(matcher[2])) +componentToHex(parseInt(matcher[3]));
+    }
+  }
+
+  function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+  }
+
+window.addEventListener("load",unloadElements);
+
