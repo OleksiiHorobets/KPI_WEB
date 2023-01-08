@@ -1,9 +1,7 @@
 function unloadElementsToRes(){
     if(!localStorage.getItem("element"+0)){
         document.querySelector("#accordion__container").innerHTML = '';
-    
         document.querySelectorAll(".element").forEach(element =>controlAccordion(element));
-        save_button.click();
         return;
     }
     
